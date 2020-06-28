@@ -220,4 +220,28 @@ router.post(
 		});
 	},
 );
+// @route POST api/profiles/experience/:exp_id
+// @desc Delete an experience
+// @access Private
+router.post(
+	'/experience/:exp_id',
+	passport.authenticate('jwt', { session: false }),
+	(req, res) => {
+		Profile.findOne({ user: req.user.id }).then((profile) => {
+			// Get remove index
+			const removeIndex = profile.experience
+				.map((item) => item.id)
+				.indexOf(req.params.exp_id);
+			// Splice out of array
+			profile.experience.splice(removeIndex, 1);
+			// Save
+			profile
+				.save()
+				.then((profile) => {
+					res.json(profile);
+				})
+				.catch((err) => res.json(err));
+		});
+	},
+);
 module.exports = router;
