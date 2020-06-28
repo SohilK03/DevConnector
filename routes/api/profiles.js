@@ -244,4 +244,28 @@ router.post(
 		});
 	},
 );
+// @route POST api/profiles/education/:edu_id
+// @desc Delete an education
+// @access Private
+router.post(
+	'/education/:edu_id',
+	passport.authenticate('jwt', { session: false }),
+	(req, res) => {
+		Profile.findOne({ user: req.user.id }).then((profile) => {
+			// Get remove index
+			const removeIndex = profile.experience
+				.map((item) => item.id)
+				.indexOf(req.params.edu_id);
+			// Splice out of array
+			profile.education.splice(removeIndex, 1);
+			// Save
+			profile
+				.save()
+				.then((profile) => {
+					res.json(profile);
+				})
+				.catch((err) => res.json(err));
+		});
+	},
+);
 module.exports = router;
