@@ -220,10 +220,10 @@ router.post(
 		});
 	},
 );
-// @route POST api/profiles/experience/:exp_id
+// @route DELETE api/profiles/experience/:exp_id
 // @desc Delete an experience
 // @access Private
-router.post(
+router.delete(
 	'/experience/:exp_id',
 	passport.authenticate('jwt', { session: false }),
 	(req, res) => {
@@ -244,10 +244,10 @@ router.post(
 		});
 	},
 );
-// @route POST api/profiles/education/:edu_id
+// @route DELETE api/profiles/education/:edu_id
 // @desc Delete an education
 // @access Private
-router.post(
+router.delete(
 	'/education/:edu_id',
 	passport.authenticate('jwt', { session: false }),
 	(req, res) => {
@@ -265,6 +265,20 @@ router.post(
 					res.json(profile);
 				})
 				.catch((err) => res.json(err));
+		});
+	},
+);
+// @route DELETE api/profiles/
+// @desc Delete the account
+// @access Private
+router.delete(
+	'/',
+	passport.authenticate('jwt', { session: false }),
+	(req, res) => {
+		Profile.findOneAndRemove({ user: req.user.id }).then(() => {
+			User.findOneAndRemove({ _id: req.user.id }).then(() => {
+				res.json({ success: true });
+			});
 		});
 	},
 );
