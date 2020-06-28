@@ -30,7 +30,7 @@ require('./config/passport')(passport);
 app.get('/', (req, res) => {
 	res.send('Hello World!!!');
 });
-// Use Routes
+// Use API Routes
 app.use('/api/users', users);
 app.use('/api/profiles', profiles);
 app.use('/api/posts', posts);
