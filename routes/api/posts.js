@@ -5,8 +5,10 @@ const router = express.Router();
 
 // Load model
 const Post = require('../../models/Post');
+const Profile = require('../../models/Profile');
 // Load validation
 const validatePostInput = require('../../validation/post');
+const { profile_url } = require('gravatar');
 // @route GET api/posts/test
 // @desc Tests Prosts route
 // @access Public
@@ -50,7 +52,25 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
 	Post.findById(req.params.id)
 		.then((post) => res.json(post))
-		.catch((err) => res.status(404).json({nopostfound:'not found'}));
+		.catch((err) => res.status(404).json({ nopostfound: 'not found' }));
 });
-
+// @route DELETE api/posts/:id
+// @desc delete a particular post
+// @access Private
+router.delete(
+	'/:id',
+	passport.authenticate('jwt', { session: false }),
+	(req, res) => {
+		Profile.findOne({ user: req.user.id }).then(profile=>{
+			Post.findById(req.params.id).then(post=>{
+				// CHeck for post owner
+				if(post.user.toString()!==req.user.id){
+					res.status(401).json({notAuthorized:'User not authorized'})
+				}
+				//Delete
+				post.remove().then(()=>res.json({deleted:"success"})).catch(err=>res.json(err))
+			})
+		})
+	});
 module.exports = router;
+
