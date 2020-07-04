@@ -9,12 +9,14 @@ const Profile = require('../../models/Profile');
 // Load validation
 const validatePostInput = require('../../validation/post');
 const { profile_url } = require('gravatar');
+
 // @route GET api/posts/test
 // @desc Tests Prosts route
 // @access Public
 router.get('/test', (req, res) => {
 	res.json({ message: ' Haan Ye bhi Chal gya' });
 });
+
 // @route POST api/posts/
 // @desc Create Posts
 // @access Private
@@ -37,6 +39,7 @@ router.post(
 		}
 	},
 );
+
 // @route GET api/posts/
 // @desc Get all posts
 // @access Public
@@ -46,14 +49,17 @@ router.get('/', (req, res) => {
 		.then((posts) => res.json(posts))
 		.catch((err) => res.status(404).json(err));
 });
+
 // @route GET api/posts/:id
 // @desc Get a particular
 // @access Public
+
 router.get('/:id', (req, res) => {
 	Post.findById(req.params.id)
 		.then((post) => res.json(post))
 		.catch((err) => res.status(404).json({ nopostfound: 'not found' }));
 });
+
 // @route DELETE api/posts/:id
 // @desc delete a particular post
 // @access Private
