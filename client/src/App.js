@@ -6,6 +6,7 @@ import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Login from './Auth/Login';
 import Register from './Auth/Register';
+
 import './App.css';
 
 function App() {
