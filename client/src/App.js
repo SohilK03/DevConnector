@@ -11,6 +11,7 @@ import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Login from './Auth/Login';
 import Register from './Auth/Register';
+import dashboard from './components/Dashboard/dashboard';
 
 import './App.css';
 // Check for token
@@ -46,6 +47,9 @@ class App extends Component {
 						</div>
 						<div className='container'>
 							<Route exact path='/login' component={Login} />
+						</div>
+						<div className='container'>
+							<Route exact path='/dashboard' component={dashboard} />
 						</div>
 						<Footer />
 					</div>
