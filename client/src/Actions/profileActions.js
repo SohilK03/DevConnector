@@ -7,7 +7,7 @@ export const getCurrentProfile = () => (dispatch) => {
 	axios
 		.get('/api/profiles/')
 		.then((res) => dispatch({ type: GET_PROFILE, payload: res.data }))
-		.catch((err) => dispatch({ type: GET_PROFILE, payload: null }));
+		.catch((err) => dispatch({ type: GET_PROFILE, payload: {} }));
 };
 
 export const setProfileLoading = () => {

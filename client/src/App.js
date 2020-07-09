@@ -13,6 +13,7 @@ import Landing from './components/layout/Landing';
 import Login from './Auth/Login';
 import Register from './Auth/Register';
 import dashboard from './components/Dashboard/dashboard';
+import CreateProfile from './components/Create_Profile/CreateProfile';
 
 import './App.css';
 // Check for token
@@ -52,6 +53,15 @@ class App extends Component {
 						<div className='container'>
 							<Switch>
 								<PrivateRoute exact path='/dashboard' component={dashboard} />
+							</Switch>
+						</div>
+						<div className='container'>
+							<Switch>
+								<PrivateRoute
+									exact
+									path='/create-profile'
+									component={CreateProfile}
+								/>
 							</Switch>
 						</div>
 						<Footer />
