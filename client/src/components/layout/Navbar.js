@@ -1,7 +1,49 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-export default class Navbar extends Component {
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { logoutUser } from '../../Actions/authActions';
+
+class Navbar extends Component {
+	onLogoutClick(e) {
+		e.preventDefault();
+		this.props.logoutUser();
+	}
 	render() {
+		const { isAuthenticated, user } = this.props.auth;
+		const guestLinks = (
+			<ul className='navbar-nav ml-auto'>
+				<li className='nav-item'>
+					<Link className='nav-link' to='/register'>
+						Sign Up
+					</Link>
+				</li>
+				<li className='nav-item'>
+					<Link className='nav-link' to='/login'>
+						Login
+					</Link>
+				</li>
+			</ul>
+		);
+		const authtLinks = isAuthenticated ? (
+			<ul className='navbar-nav ml-auto'>
+				<li className='nav-item'>
+					<a
+						href='//'
+						onClick={this.onLogoutClick.bind(this)}
+						className='nav-link'>
+						Log Out
+						<img
+							className='rounded-circle'
+							src={user.avatar}
+							alt={user.name}
+							title='You must have a gravatar connected to your email to display your image'
+							style={{ width: '30px', marginRight: '5px', marginLeft: '5px' }}
+						/>
+					</a>
+				</li>
+			</ul>
+		) : null;
 		return (
 			<nav className='navbar navbar-expand-sm navbar-dark bg-dark mb-4'>
 				<div className='container'>
@@ -25,22 +67,18 @@ export default class Navbar extends Component {
 								</Link>
 							</li>
 						</ul>
-
-						<ul className='navbar-nav ml-auto'>
-							<li className='nav-item'>
-								<Link className='nav-link' to='/register'>
-									Sign Up
-								</Link>
-							</li>
-							<li className='nav-item'>
-								<Link className='nav-link' to='/login'>
-									Login
-								</Link>
-							</li>
-						</ul>
+						{isAuthenticated ? authtLinks : guestLinks}
 					</div>
 				</div>
 			</nav>
 		);
 	}
 }
+Navbar.propTypes = {
+	logoutUser: PropTypes.func.isRequired,
+	auth: PropTypes.object.isRequired,
+};
+const mapStateToProps = (state) => ({
+	auth: state.auth,
+});
+export default connect(mapStateToProps, { logoutUser })(Navbar);
