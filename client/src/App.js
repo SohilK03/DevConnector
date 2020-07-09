@@ -1,11 +1,12 @@
 // eslint-disable-next-line
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './Actions/authActions';
 import { Provider } from 'react-redux';
 import store from './store';
+import PrivateRoute from './components/layout/Common/privateRoute';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
@@ -49,7 +50,9 @@ class App extends Component {
 							<Route exact path='/login' component={Login} />
 						</div>
 						<div className='container'>
-							<Route exact path='/dashboard' component={dashboard} />
+							<Switch>
+								<PrivateRoute exact path='/dashboard' component={dashboard} />
+							</Switch>
 						</div>
 						<Footer />
 					</div>
