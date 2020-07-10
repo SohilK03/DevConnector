@@ -2,17 +2,18 @@ import React from 'react';
 import spinnergif from './spinner.gif';
 export default function spinner() {
 	return (
-		<div>
+		<div className=' container container-fluid text-center'>
 			<img
 				src={spinnergif}
 				alt='Loading'
 				style={{
-					width: '200px',
+					width: '300px',
 					display: 'block',
-					marging: 'auto',
+					margin: 'auto',
 					alignSelf: 'center',
 				}}
 			/>
+			<h2>Loading</h2>
 		</div>
 	);
 }
