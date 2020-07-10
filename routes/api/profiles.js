@@ -3,7 +3,7 @@ const bodyparser = require('body-parser');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
-
+mongoose.set('useFindAndModify', false);
 // Load Profiles Model
 const Profile = require('../../models/Profile');
 // Load Users Model
@@ -125,6 +125,7 @@ router.post(
 		//Social
 		profileFields.socials = {};
 		if (req.body.youtube) profileFields.socials.youtube = req.body.youtube;
+		if (req.body.twitter) profileFields.socials.twitter = req.body.twitter;
 		if (req.body.facebook) profileFields.socials.facebook = req.body.facebook;
 		if (req.body.linkedin) profileFields.socials.linkedin = req.body.linkedin;
 		if (req.body.instagram)

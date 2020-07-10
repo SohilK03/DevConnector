@@ -10,10 +10,11 @@ import PrivateRoute from './components/layout/Common/privateRoute';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
-import Login from './Auth/Login';
-import Register from './Auth/Register';
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
 import dashboard from './components/Dashboard/dashboard';
 import CreateProfile from './components/Create_Profile/CreateProfile';
+import EditProfile from './components/edit-profile/EditProfile';
 
 import './App.css';
 // Check for token
@@ -61,6 +62,15 @@ class App extends Component {
 									exact
 									path='/create-profile'
 									component={CreateProfile}
+								/>
+							</Switch>
+						</div>
+						<div className='container'>
+							<Switch>
+								<PrivateRoute
+									exact
+									path='/edit-profile'
+									component={EditProfile}
 								/>
 							</Switch>
 						</div>

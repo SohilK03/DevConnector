@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loginUser } from '../Actions/authActions';
+import { loginUser } from '../../Actions/authActions';
 // import classnames from 'classnames';
-import TextFieldGroup from '../components/layout/Common/textFieldGroup';
+import TextFieldGroup from '../layout/Common/textFieldGroup';
 
 class Login extends Component {
 	constructor() {
