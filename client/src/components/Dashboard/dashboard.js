@@ -6,6 +6,8 @@ import { getCurrentProfile } from '../../Actions/profileActions';
 import Spinner from '../layout/Common/spinner';
 class Dashboard extends Component {
 	componentDidMount() {
+		console.log("Entered");
+		
 		this.props.getCurrentProfile();
 	}
 
