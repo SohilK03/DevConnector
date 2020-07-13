@@ -25,6 +25,14 @@ export const getCurrentProfile = () => (dispatch) => {
 		.then((res) => dispatch({ type: GET_PROFILE, payload: res.data }))
 		.catch((err) => dispatch({ type: GET_PROFILE, payload: {} }));
 };
+// Get Profile by handle
+export const getProfileByHandle = (handle) => (dispatch) => {
+	dispatch(setProfileLoading());
+	axios
+		.get(`/api/profiles/handle/${handle}`)
+		.then((res) => dispatch({ type: GET_PROFILE, payload: res.data }))
+		.catch((err) => dispatch({ type: GET_PROFILE, payload: null }));
+};
 
 export const setProfileLoading = () => {
 	return {

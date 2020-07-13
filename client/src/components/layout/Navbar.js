@@ -44,6 +44,11 @@ class Navbar extends Component {
 						/>
 					</a>
 				</li>
+				<li className='nav-item'>
+					<a href='/dashboard' className='nav-link'>
+						Dashboard
+					</a>
+				</li>
 			</ul>
 		) : null;
 		return (
@@ -69,7 +74,7 @@ class Navbar extends Component {
 								</Link>
 							</li>
 						</ul>
-						{console.log(isAuthenticated)}
+
 						{isAuthenticated ? authtLinks : guestLinks}
 					</div>
 				</div>
