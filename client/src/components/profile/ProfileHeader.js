@@ -71,6 +71,14 @@ class ProfileHeader extends Component {
 										<i className='fab fa-instagram fa-2x'></i>
 									</a>
 								)}
+								{isEmpty(profile.socials && profile.socials.youtube) ? null : (
+									<a
+										className='text-white p-2'
+										href={profile.socials.youtube}
+										target='_blank'>
+										<i className='fab fa-youtube fa-2x'></i>
+									</a>
+								)}
 							</p>
 						</div>
 					</div>
