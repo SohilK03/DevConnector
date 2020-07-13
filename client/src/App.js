@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './Actions/authActions';
+import { clearCurrentProfile } from './Actions/profileActions';
 import { Provider } from 'react-redux';
 import store from './store';
 import PrivateRoute from './components/layout/Common/privateRoute';
@@ -30,15 +31,16 @@ if (localStorage.jwtToken) {
 
 	// Check for expired token
 	const currentTime = Date.now() / 1000;
-	// if (decoded.exp < currentTime) {
-	// 	//Logout the user
-	// 	store.dispatch(logoutUser);
-	// 	// TODO: Clear the current profile
-
-	// 	// Redirect to login
-	// 	window.location.href = '/login';
-	// }
+	if (decoded.exp < currentTime) {
+		// Logout user
+		store.dispatch(logoutUser());
+		// Clear current Profile
+		store.dispatch(clearCurrentProfile());
+		// Redirect to login
+		window.location.href = '/login';
+	}
 }
+
 class App extends Component {
 	render() {
 		return (
@@ -82,6 +84,15 @@ class App extends Component {
 									exact
 									path='/add-experience'
 									component={AddExperience}
+								/>
+							</Switch>
+						</div>
+						<div className='container'>
+							<Switch>
+								<PrivateRoute
+									exact
+									path='/add-education'
+									component={AddEducation}
 								/>
 							</Switch>
 						</div>
