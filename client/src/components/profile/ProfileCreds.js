@@ -5,7 +5,7 @@ class ProfileCreds extends Component {
 	render() {
 		const { experience, education } = this.props;
 		const expItems = experience.map((exp) => (
-			<li class='list-group-item'>
+			<li className='list-group-item'>
 				<h4>{exp.company}</h4>
 				<p>
 					<Moment format='MMM YYYY'>{exp.from}</Moment>-
@@ -35,7 +35,7 @@ class ProfileCreds extends Component {
 			</li>
 		));
 		const eduItems = education.map((edu) => (
-			<li class='list-group-item'>
+			<li className='list-group-item'>
 				<h4>{edu.school}</h4>
 				<p>
 					<Moment format='MMM YYYY'>{edu.from}</Moment>-
@@ -63,21 +63,21 @@ class ProfileCreds extends Component {
 		));
 		return (
 			<div>
-				<div class='row'>
-					<div class='col-md-6'>
-						<h3 class='text-center text-info'>Experience</h3>
+				<div className='row'>
+					<div className='col-md-6'>
+						<h3 className='text-center text-info'>Experience</h3>
 						{isEmpty(expItems) ? (
 							<h2>No Experience To list</h2>
 						) : (
-							<ul class='list-group'>{expItems}</ul>
+							<ul className='list-group'>{expItems}</ul>
 						)}
 					</div>
-					<div class='col-md-6'>
-						<h3 class='text-center text-info'>Education</h3>
+					<div className='col-md-6'>
+						<h3 className='text-center text-info'>Education</h3>
 						{isEmpty(eduItems) ? (
 							<h2>No Edu Items to list</h2>
 						) : (
-							<ul class='list-group'>{eduItems}</ul>
+							<ul className='list-group'>{eduItems}</ul>
 						)}
 					</div>
 				</div>
