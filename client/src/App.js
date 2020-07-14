@@ -21,6 +21,7 @@ import AddEducation from './components/add-credentials/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import Post from './components/post/Post';
+import IndiPost from './components/post/IndiPost';
 
 import './App.css';
 // Check for token
@@ -109,6 +110,11 @@ class App extends Component {
 					<div className='container'>
 						<Switch>
 							<PrivateRoute exact path='/feed' component={Post} />
+						</Switch>
+					</div>
+					<div className='container'>
+						<Switch>
+							<PrivateRoute exact path='/posts/:id' component={IndiPost} />
 						</Switch>
 					</div>
 					<Footer />
