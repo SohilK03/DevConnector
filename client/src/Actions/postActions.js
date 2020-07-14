@@ -6,6 +6,7 @@ import {
 	POST_LOADING,
 	DELETE_POST,
 	GET_POST,
+	CLEAR_ERRORS,
 } from './types';
 
 // ADD POST
