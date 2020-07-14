@@ -20,6 +20,7 @@ import AddExperience from './components/add-credentials/AddExperience';
 import AddEducation from './components/add-credentials/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
+import Post from './components/post/Post';
 
 import './App.css';
 // Check for token
@@ -104,8 +105,13 @@ class App extends Component {
 						<div className='container'>
 							<Route exact path='/profile/:handle' component={Profile} />
 						</div>
-						<Footer />
 					</div>
+					<div className='container'>
+						<Switch>
+							<PrivateRoute exact path='/feed' component={Post} />
+						</Switch>
+					</div>
+					<Footer />
 				</Router>
 			</Provider>
 		);
